@@ -11,7 +11,7 @@ export default function Home() {
       <h1 className='text-5xl font-sans text-white font-black text-center p-10'>
         Our Exciting Offers
       </h1>
-      {currentUser ? '': (<p className='text-center font-light font-sans text-white'>Please login to see the discount and location of stores</p>)
+      {currentUser ? (<p className='text-center font-light font-sans text-white'>To get the discount please visit the store with your college ID card</p>): (<p className='text-center font-light font-sans text-white'>Please login to see the discount and location of stores</p>)
               }
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3 justify-center">
         {offersData.map((offer, index) => (
