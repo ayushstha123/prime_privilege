@@ -1,0 +1,93 @@
+[
+    {
+        "name": "Cafe Lava",
+        "discount": "10%",
+        "location": "Lazimpart",
+        "imgUrl": "https://prime.edu.np/wp-content/uploads/2023/07/cafenlava.jpg"
+    },
+    {
+        "name": "Morrison Cafe",
+        "discount": "10%",
+        "location": "Basantapur",
+        "imgUrl": "https://prime.edu.np/wp-content/uploads/2023/07/morison.jpg"
+    },
+    {
+        "name": "Mlight smart mart",
+        "discount": "5%",
+        "location": "Banasthali",
+        "imgUrl": "https://prime.edu.np/wp-content/uploads/2023/07/mlight.jpg"
+    },
+    {
+        "name": "Be Legend Shapes Gym and Fitness",
+        "discount": "10%,20%,30%",
+        "location": "khusibun",
+        "imgUrl": "https://prime.edu.np/wp-content/uploads/2023/08/Be-Legend-Shapes-Gym-Logo-scaled.jpg"
+    },
+    {
+        "name": "Hotel Crowne Imperial",
+        "discount": "15%",
+        "location": "Ravi Bhawan",
+        "imgUrl": "https://prime.edu.np/wp-content/uploads/2023/08/logo.png"
+    },
+    {
+        "name": "World Distribution Nepal",
+        "discount": "6%",
+        "location": "Siddhi Bhawan, Kantipath",
+        "imgUrl": "https://prime.edu.np/wp-content/uploads/2023/07/wdn.jpg"
+    },
+    {
+        "name": "350 Fahrenheit Bakers",
+        "discount": "15%",
+        "location": "khusibun",
+        "imgUrl": "https://prime.edu.np/wp-content/uploads/2023/08/350.jpg"
+    },
+    {
+        "name": "The Dairy Station",
+        "discount": "10%",
+        "location": "Bhagwan Pau",
+        "imgUrl": "https://prime.edu.np/wp-content/uploads/2023/08/The-Dairy-Station-Logo.jpg"
+    },
+    {
+        "name": "Sowa Health Care Center",
+        "discount": "15%",
+        "location": "Ekantakuna,Lalitpur",
+        "imgUrl": "https://prime.edu.np/wp-content/uploads/2023/08/sowa.png"
+    },
+    {
+        "name": "Washmandu",
+        "discount": "20%",
+        "location": "Balkhu and Shantinaga",
+        "imgUrl": "https://prime.edu.np/wp-content/uploads/2023/08/washmandu.png"
+    },
+
+    {
+        "name": "Bluecross Hospital Pvt. Ltd.",
+        "discount": "12%",
+        "location": "Tripureshwor,Kathmandu",
+        "imgUrl": "https://prime.edu.np/wp-content/uploads/2023/08/bluec.png"
+    },
+    {
+        "name": "Kathmandu Pathlab & Diagnostic Center",
+        "discount": "20%",
+        "location": "Kaldhara, Nayabazar",
+        "imgUrl": "https://prime.edu.np/wp-content/uploads/2023/09/kpl.jpg"
+    },
+    {
+        "name": "Beer N Nuts",
+        "discount": "12%",
+        "location": "Maru, Kathmandu",
+        "imgUrl": "https://prime.edu.np/wp-content/uploads/2023/07/beernnuts.jpg"
+    },
+    {
+        "name": "Smart Pix Studio",
+        "discount": "10%",
+        "location": "Bijeshwori, Kathmandu ",
+        "imgUrl": "https://prime.edu.np/wp-content/uploads/2023/08/studio.jpg"
+    },
+    {
+        "name": "Devi Chandima Electronics",
+        "discount": "4%",
+        "location": "Medical Chwok, Khusibu",
+        "imgUrl": "https://prime.edu.np/wp-content/uploads/2023/08/Devi-Chandima-Electronics-Vector-Image.png"
+    }
+]
