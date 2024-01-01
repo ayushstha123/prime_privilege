@@ -1,7 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { app } from '../firebase';
+import {toast} from 'react-toastify'
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
@@ -18,7 +19,7 @@ export default function SignUp() {
     const fileName = new Date().getTime() + file.name;
     const storageRef = ref(storage, fileName);
     const uploadTask = uploadBytesResumable(storageRef, file);
-  
+
     uploadTask.on(
       'state_changed',
       (snapshot) => {
@@ -36,6 +37,7 @@ export default function SignUp() {
       }
     );
   };
+
   useEffect(() => {
     if (collegeId) {
       handleFileUpload(collegeId, 'collegeId');
@@ -43,8 +45,7 @@ export default function SignUp() {
   }, [collegeId]);
 
   const validateForm = () => {
-    console.log('Form validation failed');
-    const { username, email, password, phoneNum } = formData;
+    const { username, email, password, phoneNum, level, collegeId } = formData;
 
     // Check if username is present
     if (!username || username.trim() === '') {
@@ -55,19 +56,31 @@ export default function SignUp() {
     // Check if email is valid
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email || !emailRegex.test(email)) {
-      setError('Please enter a valid email address.');
+      toast.error('Please enter a valid email address.');
       return false;
     }
 
     // Check if phone number is present
     if (!phoneNum || phoneNum.trim() === '') {
-      setError('Phone Number is required.');
+      toast.error('Phone Number is required.');
+      return false;
+    }
+
+    // Check if level is selected
+    if (!level) {
+      toast.error('Please select your education level.');
+      return false;
+    }
+
+    // Check if collegeId is uploaded
+    if (!collegeId) {
+      toast.error('Please upload your College ID.');
       return false;
     }
 
     // Check if password is at least 10 characters
     if (!password || password.length < 10) {
-      setError('Password must be at least 10 characters.');
+      toast.error('Password must be at least 10 characters.');
       return false;
     }
 
@@ -77,7 +90,7 @@ export default function SignUp() {
   const handleChange = (e) => {
     const fieldName = e.target.id;
 
-    if (fieldName === 'collegeId') { // consistent with the ID attribute in the input
+    if (fieldName === 'collegeId') {
       setCollegeId(e.target.files[0]);
     } else {
       setFormData((prevData) => ({ ...prevData, [fieldName]: e.target.value }));
@@ -86,7 +99,7 @@ export default function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
     if (!validateForm()) {
       return;
     }
@@ -95,7 +108,6 @@ export default function SignUp() {
       setLoading(true);
       setError(false);
 
-      // Include the 'college' field in the formData
       const collegeElement = document.getElementById('college');
       const collegeValue = collegeElement ? collegeElement.value : '';
       const formDataWithCollege = {
@@ -108,7 +120,7 @@ export default function SignUp() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formDataWithCollege), // Use the updated formData
+        body: JSON.stringify(formDataWithCollege),
       });
 
       const data = await res.json();
@@ -116,7 +128,7 @@ export default function SignUp() {
 
       setLoading(false);
       if (data.success === false) {
-        console.log('Sign-up failed:', data.message);
+        toast.error('Sign-up failed:', data.message);
         setError(true);
         return;
       }
@@ -124,8 +136,7 @@ export default function SignUp() {
       navigate('/sign-in');
     } catch (error) {
       setLoading(false);
-      console.error('Error during sign-up:', error);
-
+      toast.error('Error during sign-up:', error);
       setError(true);
     }
   };
@@ -134,7 +145,7 @@ export default function SignUp() {
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl text-center font-semibold my-7'>Sign Up</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-      <input
+        <input
           type='text'
           placeholder='Username'
           id='username'
@@ -164,9 +175,9 @@ export default function SignUp() {
           <option value='bachelor'>Bachelor</option>
           <option value='masters'>Masters</option>
         </select>
-<input
+        <input
           type='file'
-          id='collegeId' // consistent with the 'handleChange' function
+          id='collegeId'
           hidden
           ref={fileRef}
           accept='image/*'
@@ -199,7 +210,6 @@ export default function SignUp() {
         >
           {loading ? 'Loading...' : 'Sign Up'}
         </button>
-
       </form>
       <div className='flex gap-2 mt-5'>
         <p>Have an account?</p>
