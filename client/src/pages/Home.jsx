@@ -8,11 +8,11 @@ export default function Home() {
 
   return (
     <div className='bg-violet-600'>
-      <h1 className='text-5xl font-sans text-white font-black text-center p-10'>
-        Our Exciting Offers
+      <h1 className='text-5xl font-sans pt-24 text-white font-black text-center p-10'>
+      Nepal's Premier Student Discounts Hub!      
       </h1>
-      {currentUser ? (<p className='text-center font-light font-sans text-white'>To get the discount please visit the store with your college ID card</p>): (<p className='text-center font-light font-sans text-white'>Please login to see the discount and location of stores</p>)
-              }
+      <p className='text-center pb-8 p-2 font-light font-sans text-white'>Study More, Spend Less - Empowering Nepali Students with Unmatched Deals!</p>
+             
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3 justify-center">
         {offersData.map((offer, index) => (
           <div key={index} className="p-5 mx-5 md:mx-2">
