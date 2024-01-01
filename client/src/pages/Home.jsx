@@ -28,17 +28,15 @@ export default function Home() {
                 <h2 className="mb-1 md:text-start text-center font-medium text-black">
                   {offer.name}
                 </h2>
-                {currentUser ? (
-                  <>
+                
+                 
                     <p href="#" className="inline-flex items-center my-2 px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 ">
                       Discount: {offer.discount}
                     </p>
                     <p href="#" className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-green-500 border border-gray-300 rounded-lg">
                       Location: {offer.location}
                     </p>
-                  </>
-                ) : ''
-              }
+               
               </div>
             </div>
           </div>
