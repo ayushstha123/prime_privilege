@@ -101,7 +101,7 @@ export default function About() {
                             </div>
                         </div>
                         <div className="w-full px-4  mb-10 lg:w-1/2 lg:mb-0">
-                            <img  src="https://prime.edu.np/wp-content/uploads/2023/07/BBA-Program-1024x683.jpg" alt=""
+                            <img  src="./src/assests/images/img1.jpg" alt=""
                                 className="relative z-1000 object-cover w-full h-full rounded" />
                         </div>
                     </div>
@@ -118,16 +118,14 @@ export default function About() {
                     <div className="flex flex-wrap items-center">
                         <div className="w-full px-4 mb-10 xl:w-1/2 lg:mb-8">
                             <div className="flex flex-wrap">
-                                <div className="w-full px-4 md:w-1/2">
-                                    <img src="https://prime.edu.np/wp-content/uploads/2023/08/Student-Support-Division-scaled.jpg" alt=""
+                            <div className="w-full px-4 md:w-1/2">
+                            <img src="./src/assests/images/img2.jpg" alt=""
                                         className="object-cover w-full mb-6 rounded-lg h-80" />
-                                    <img src="https://prime.edu.np/wp-content/uploads/2023/07/AYU_3083_pp-scaled.jpg" alt=""
-                                        className="object-cover w-full rounded-lg h-80" />
                                 </div>
+
                                 <div className="w-full px-4 md:w-1/2 xl:mt-11">
-                                    <img src="https://prime.edu.np/wp-content/uploads/2023/08/PCC-1-scaled.jpg" alt=""
-                                        className="object-cover w-full mb-6 rounded-lg h-80" />
-                                    <img src="https://prime.edu.np/wp-content/uploads/2023/08/ESO-scaled.jpg" alt=""
+                                    
+                                    <img src="./src/assests/images/img3.jpg" alt=""
                                         className="object-cover w-full rounded-lg h-80" />
                                 </div>
                             </div>
@@ -191,9 +189,8 @@ export default function About() {
                         </p>
 
                     </div>
-                    <div className="grid grid-cols-2 gap-4 mt-8">
-                        <img className="w-full rounded-lg" src="https://prime.edu.np/wp-content/uploads/2023/07/AYU_2673_pp-scaled.jpg" alt="student 1" />
-                        <img className="mt-4 w-full lg:mt-10 rounded-lg" src="https://prime.edu.np/wp-content/uploads/2023/08/sports-scaled.jpg" alt="student2" />
+                    <div className="gap-4 mt-8">
+                        <img className="w-full rounded-lg" src="./src/assests/images/img4.jpg" alt="student 1" />
                     </div>
                 </div>
             </section>
@@ -211,7 +208,7 @@ export default function About() {
                         </p>
                     </div>
                     <div className="grid  mt-8">
-                        <img className="w-full rounded-lg" src="https://prime.edu.np/wp-content/uploads/2023/08/Library-2-scaled.jpg" alt="student 1" />
+                        <img className="w-full rounded-lg" src="./src/assests/images/img5.jpg" alt="student 1" />
                     </div>
                 </div>
             </section>
