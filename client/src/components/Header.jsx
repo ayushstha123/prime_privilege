@@ -7,7 +7,7 @@ export default function Header() {
     <div className='bg-purple-900 z-10 sticky top-0 shadow-lg'>
       <div className='text-white font-sans font-thin  flex justify-between items-center max-w-6xl mx-auto p-3'>
         <Link to='/'>
-          <h1 className='font-bold'>cupon</h1>
+          <h1 className='font-bold'>Prime Privileges</h1>
         </Link>
         <ul className='flex gap-6'>
           <Link to='/'>
