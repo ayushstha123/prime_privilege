@@ -46,7 +46,7 @@ export default function SignUp() {
 
   const validateForm = () => {
     const { username, email, password, phoneNum, level, collegeId } = formData;
-
+console.log(formData)
     // Check if username is present
     if (!username || username.trim() === '') {
       setError('Username is required.');
@@ -89,57 +89,88 @@ export default function SignUp() {
 
   const handleChange = (e) => {
     const fieldName = e.target.id;
-
+  
     if (fieldName === 'collegeId') {
       setCollegeId(e.target.files[0]);
     } else {
       setFormData((prevData) => ({ ...prevData, [fieldName]: e.target.value }));
     }
+  
+    console.log(formData); // Log the formData to check if 'otp' is being updated
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!validateForm()) {
       return;
     }
-
+  
     try {
       setLoading(true);
       setError(false);
-
+  
       const collegeElement = document.getElementById('college');
       const collegeValue = collegeElement ? collegeElement.value : '';
       const formDataWithCollege = {
         ...formData,
         collegeID: collegeValue,
       };
+      console.log(formDataWithCollege);
 
-      const res = await fetch('/api/auth/signup', {
+  
+      const res = await fetch('api/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formDataWithCollege),
       });
-
+  
       const data = await res.json();
-      console.log(data);
-
       setLoading(false);
-      if (data.success === false) {
-        toast.error('Sign-up failed:', data.message);
+  
+      if (!data.success) {
+        toast.error(`Sign-up failed: ${data.message || 'Unknown error'}`);
+        console.log(res)
         setError(true);
         return;
       }
-
       navigate('/sign-in');
     } catch (error) {
       setLoading(false);
-      toast.error('Error during sign-up:', error);
+      toast.error(`Error during sign-up: ${error.message || 'Unknown error'}`);
       setError(true);
     }
   };
+    
+
+  const handleVerifyEmail = async () => {
+    try {
+       // Send a request to the backend to trigger OTP sending
+       const res = await fetch('/api/auth/sendotp', {
+          method: 'POST',
+          headers: {
+             'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: formData.email }),
+       });
+ 
+       const data = await res.json();
+ 
+       if (data.success) {
+          toast.success('OTP sent successfully');
+       } else {
+          toast.error('Failed to send OTP: ' + data.message);
+       }
+       console.log(data);  // Move the console.log inside the try block
+    } catch (error) {
+       console.error('Error sending OTP:', error);
+       toast.error('Error sending OTP');
+    }
+ };
+ 
 
   return (
     <div className='p-3 max-w-lg mx-auto'>
@@ -156,6 +187,19 @@ export default function SignUp() {
           type='email'
           placeholder='Email'
           id='email'
+          className='bg-slate-100 p-3 rounded-lg'
+          onChange={handleChange}
+        />
+        <button
+  onClick={handleVerifyEmail} // Add this click event handler
+  className='bg-blue-500 text-white p-3 rounded-lg uppercase hover:opacity-95'
+>
+  Verify Email
+</button>
+<input
+          type='text'
+          placeholder='OTP from your email'
+          id='otp'
           className='bg-slate-100 p-3 rounded-lg'
           onChange={handleChange}
         />

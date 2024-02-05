@@ -26,9 +26,9 @@ const userSchema = new mongoose.Schema(
       required:true,
       default:'+2'
     },
-    phoneNum:{
-      type:Number,
-      required:true,
+    phoneNum: {
+      type: String, // Change the type to String
+      required: true,
     },
     collegeId: {
       type: String,

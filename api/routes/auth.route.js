@@ -1,12 +1,11 @@
 import express from 'express';
-import { signin, signup, google, microsoft , signout } from '../controllers/auth.controller.js';
-
+import { signin, signup, signout } from '../controllers/auth.controller.js';
+import { sendOTP } from '../controllers/otp.controllers.js';
 const router = express.Router();
 
 router.post('/signup', signup);
 router.post('/signin', signin);
-router.post('/google', google);
-router.post('/microsoft', microsoft); // Add the Microsoft authentication route
 router.get('/signout', signout);
+router.post('/sendotp', sendOTP);
 
 export default router;
