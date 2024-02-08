@@ -33,9 +33,16 @@ export default function Home() {
   }, [images.length]);
 
   return (
-    <div className='bg-violet-600'>
+    <div className=''>
       <div className="relative w-full">
-        <div className="carousel-container aspect-w-16 aspect-h-9 object-scale-down overflow-hidden w-full">
+        <div className="carousel-container aspect-w-16 aspect-h-9 object-scale-down overflow-hidden w-full h-full">
+          <div className="bg-black">
+        <h1 className='text-5xl font-sans pt-24 text-white font-black text-center p-10 bg-transparent'>
+      Nepal's Premier Student Discounts Hub!      
+      </h1>
+      <p className='text-center pb-8 p-2 font-light font-sans text-white bg-transparent'>Study More, Spend Less - Empowering Nepali Students with Unmatched Deals!</p>
+      </div>
+       
           <div
             className="carousel-content flex transition-transform duration-300 ease-in-out transform"
             style={{
@@ -66,12 +73,7 @@ export default function Home() {
 </button>
 
         </div>
-      </div>
-      <h1 className='text-5xl font-sans pt-24 text-white font-black text-center p-10'>
-      Nepal's Premier Student Discounts Hub!      
-      </h1>
-      <p className='text-center pb-8 p-2 font-light font-sans text-white'>Study More, Spend Less - Empowering Nepali Students with Unmatched Deals!</p>
-             
+      </div>      
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3 justify-center">
         {offersData.map((offer, index) => (
           <div key={index} className="p-5 mx-5 md:mx-2">
