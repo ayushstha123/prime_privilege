@@ -158,12 +158,12 @@ export default function Profile() {
           className='bg-slate-100 p-3 rounded-lg'
           onChange={(e) => setFormData({ ...formData, level: e.target.value })}
         >
+          <option disabled>update your level</option>
           <option value='+2'>+2</option>
           <option value='bachelor'>Bachelor</option>
           <option value='masters'>Masters</option>
         </select>
         <input
-          defaultValue={currentUser.phoneNum}
           placeholder='Phone Number'
           id='phoneNum'
           className='bg-slate-100 p-3 rounded-lg'
