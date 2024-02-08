@@ -113,11 +113,13 @@ export default function SignUp() {
   
       const collegeElement = document.getElementById('college');
       const collegeValue = collegeElement ? collegeElement.value : '';
+  
+      // Lowercase the address field before submitting
       const formDataWithCollege = {
         ...formData,
         collegeID: collegeValue,
+        address: formData.address.toLowerCase(), // Lowercase the address
       };
-
   
       const res = await fetch('api/auth/signup', {
         method: 'POST',
@@ -132,7 +134,7 @@ export default function SignUp() {
   
       if (!data.success) {
         toast.error(`Sign-up failed: ${data.message || 'Unknown error'}`);
-        console.log(res)
+        console.log(res);
         setError(true);
         return;
       }
@@ -144,12 +146,10 @@ export default function SignUp() {
       setError(true);
     }
   };
-  
-  const handleVerifyEmail = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-  
-    try {
+  const handleVerifyEmail = async () => {
+    try {    
+      setLoading(true);
+
       const res = await fetch('/api/auth/sendotp', {
         method: 'POST',
         headers: {
@@ -193,7 +193,8 @@ export default function SignUp() {
           onChange={handleChange}
         />
         <button
-  onClick={handleVerifyEmail} // Add this click event handler
+        type='button'
+  onClick={handleVerifyEmail}
   className='bg-blue-500 text-white p-3 rounded-lg uppercase hover:opacity-95'
 >
 {loading ? 'Loading...' : 'Verify Email'}
@@ -259,7 +260,7 @@ export default function SignUp() {
           onChange={handleChange}
         />
         <button
-          disabled={loading}
+        disabled={loading}
           className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
         >
           {loading ? 'Loading...' : 'Sign Up'}

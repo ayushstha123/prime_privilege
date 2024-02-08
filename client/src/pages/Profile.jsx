@@ -164,6 +164,13 @@ export default function Profile() {
           <option value='masters'>Masters</option>
         </select>
         <input
+          defaultValue={currentUser.address}
+          placeholder='address'
+          id='address'
+          className='bg-slate-100 p-3 rounded-lg'
+          onChange={handleChange}
+        />
+        <input
           placeholder='Phone Number'
           id='phoneNum'
           className='bg-slate-100 p-3 rounded-lg'
