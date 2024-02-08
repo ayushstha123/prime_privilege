@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    email: {
+    email:{
       type: String,
       required: true,
       unique: true,
@@ -27,9 +27,13 @@ const userSchema = new mongoose.Schema(
       default:'+2'
     },
     phoneNum: {
-      type: String, // Change the type to String
+      type: String,
       required: true,
     },
+    address:{
+      type:String,
+      required:true,
+        },
     collegeId: {
       type: String,
     },
@@ -37,6 +41,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       default:
         'https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg',
+    },
+    role: {
+      type: String,
+      enum: ['visitor', 'student', 'shopkeeper', 'admin'],
+      default: 'visitor', 
     },
   },
   { timestamps: true }

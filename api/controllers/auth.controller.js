@@ -6,7 +6,7 @@ import OTP from '../models/otp.model.js';
 
 export const signup = async (req, res, next) => {
   try {
-    const { username, email, password, college, level, phoneNum, collegeId, otp } = req.body;
+    const { username, email, password, college, address, level, phoneNum, collegeId, otp } = req.body;
 
     // Check if user already exists
     const existingUser = await User.findOne({ email });
@@ -28,7 +28,9 @@ export const signup = async (req, res, next) => {
 
     // Secure password
     let hashedPassword;
+    let hashedPhoneNumber;
     try {
+      hashedPhoneNumber=await bcryptjs.hash(phoneNum,10);
       hashedPassword = await bcryptjs.hash(password, 10);
     } catch (error) {
       return res.status(500).json({
@@ -43,7 +45,8 @@ export const signup = async (req, res, next) => {
       college,
       password: hashedPassword,
       level,
-      phoneNum,
+      address,
+      phoneNum: hashedPhoneNumber,
       collegeId,
     });
 

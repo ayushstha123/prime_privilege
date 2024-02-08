@@ -45,7 +45,7 @@ export default function SignUp() {
   }, [collegeId]);
 
   const validateForm = () => {
-    const { username, email, password, phoneNum, level, collegeId } = formData;
+    const { username, email, password, phoneNum,address, level, collegeId } = formData;
 console.log(formData)
     // Check if username is present
     if (!username || username.trim() === '') {
@@ -69,6 +69,10 @@ console.log(formData)
     // Check if level is selected
     if (!level) {
       toast.error('Please select your education level.');
+      return false;
+    }
+    if (!address) {
+      toast.error('Please enter your address!');
       return false;
     }
 
@@ -144,32 +148,33 @@ console.log(formData)
       setError(true);
     }
   };
-    
-
+  
   const handleVerifyEmail = async () => {
     try {
-       // Send a request to the backend to trigger OTP sending
-       const res = await fetch('/api/auth/sendotp', {
-          method: 'POST',
-          headers: {
-             'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email: formData.email }),
-       });
- 
-       const data = await res.json();
- 
-       if (data.success) {
-          toast.success('OTP sent successfully');
-       } else {
-          toast.error('Failed to send OTP: ' + data.message);
-       }
-       console.log(data);  // Move the console.log inside the try block
+      // Send a request to the backend to trigger OTP sending
+      const res = await fetch('/api/auth/sendotp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: formData.email }),
+      });
+  
+      const data = await res.json();
+  
+      if (data.success) {
+        toast.success('OTP sent successfully');
+        setFormData(prevData => ({ ...prevData, phoneNum: '' }));
+      } else {
+        toast.error('Failed to send OTP: ' + data.message);
+      }
+      console.log(data);
     } catch (error) {
-       console.error('Error sending OTP:', error);
-       toast.error('Error sending OTP');
+      console.error('Error sending OTP:', error);
+      toast.error('Error sending OTP');
     }
- };
+  };
+  
  
 
   return (
@@ -241,6 +246,13 @@ console.log(formData)
             ''
           )}
         </p>
+        <input
+          type='address'
+          placeholder='address'
+          id='address'
+          className='bg-slate-100 p-3 rounded-lg'
+          onChange={handleChange}
+        />
         <input
           type='password'
           placeholder='Password (at least 10 characters)'
