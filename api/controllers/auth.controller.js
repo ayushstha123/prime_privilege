@@ -60,16 +60,25 @@ export const signup = async (req, res, next) => {
     return res.status(500).json({ success: false, error: error.message });
   }
 };
- 
+
 export const signin = async (req, res, next) => {
   const { email, password } = req.body;
   try {
     const validUser = await User.findOne({ email });
     if (!validUser) return next(errorHandler(404, 'User not found'));
+
     const validPassword = bcryptjs.compareSync(password, validUser.password);
-    if (!validPassword) return next(errorHandler(401, 'wrong credentials'));
-    const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
+    if (!validPassword) return next(errorHandler(401, 'Wrong credentials'));
+
+    // Determine the role of the user (e.g., admin or user)
+    const role = validUser.role; // Assuming the user document has a 'role' property
+
+    // Generate the JWT token with user ID and role
+    const token = jwt.sign({ id: validUser._id, role }, process.env.JWT_SECRET);
+
+    // Omit the password from the response
     const { password: hashedPassword, ...rest } = validUser._doc;
+
     const expiryDate = new Date(Date.now() + 3600000); // 1 hour
     res
       .cookie('access_token', token, { httpOnly: true, expires: expiryDate })
