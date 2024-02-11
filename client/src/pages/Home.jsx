@@ -36,7 +36,7 @@ export default function Home() {
     <div className=''>
       <div className="relative w-full">
         <div className="carousel-container aspect-w-16 aspect-h-9 object-scale-down overflow-hidden w-full h-full">
-          <div className="bg-black">
+          <div className="bg-black absolute">
         <h1 className='text-5xl font-sans pt-24 text-white font-black text-center p-10 bg-transparent'>
       Nepal's Premier Student Discounts Hub!      
       </h1>
