@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema(
     address:{
       type:String,
       required:true,
-        },
+    },
     collegeId: {
       type: String,
     },
