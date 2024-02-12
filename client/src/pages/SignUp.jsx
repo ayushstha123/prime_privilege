@@ -195,7 +195,7 @@ export default function SignUp() {
         <button
         type='button'
   onClick={handleVerifyEmail}
-  className='bg-blue-500 text-white p-3 rounded-lg uppercase hover:opacity-95'
+  className='bg-blue-500 text-white p-3 rounded-lg uppercase hover:opacity-95 font-medium'
 >
 {loading ? 'Loading...' : 'Verify Email'}
 </button>
@@ -231,7 +231,7 @@ export default function SignUp() {
           accept='image/*'
           onChange={(e) => setCollegeId(e.target.files[0])}
         />
-        <label htmlFor='collegeId' className='bg-green-500 p-2 cursor-pointer'>
+        <label htmlFor='collegeId' className='bg-green-600 p-2 cursor-pointer font-medium text-white rounded-lg text-center hover:opacity-95'>
           Upload Your College ID
         </label>
         <p className='text-sm self-center'>
@@ -261,7 +261,7 @@ export default function SignUp() {
         />
         <button
         disabled={loading}
-          className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
+          className='bg-slate-700 text-white p-3 rounded-lg uppercase font-medium hover:opacity-95 disabled:opacity-10'
         >
           {loading ? 'Loading...' : 'Sign Up'}
         </button>

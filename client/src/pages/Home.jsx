@@ -46,12 +46,18 @@ export default function Home() {
           >
             {images.map((image, index) => (
               <div key={index} className="carousel-item w-full h-96">
-                <img src={image} alt={`carousel-item-${index}`} className=" w-full" />
+                <img loading='lazy' src={image} alt={`carousel-item-${index}`} className=" w-full" />
               </div>
             ))}
           </div>
           
         </div>
+        <div class="overlay">
+        <h1 className='text-5xl font-sans pt-24 text-white font-black text-center p-10 bg-transparent '>
+      Nepal's Premier Student Discounts Hub!      
+      </h1>
+      <p className='text-center pb-8 p-2 font-sans text-white bg-transparent font-medium'>Study More, Spend Less - Empowering Nepali Students with Unmatched Deals!</p>
+      </div>
         <div className="absolute p-5 top-1/2 left-0 transform -translate-y-1/2 w-full">
         <button className="carousel-arrow hover:bg-white hover:rounded-full p-2 transition-all animate-bounce carousel-prev float-left " onClick={handlePrev}>
   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -67,20 +73,15 @@ export default function Home() {
 </button>
 
         </div>
-        <div class="overlay">
-        <h1 className='text-5xl font-sans pt-24 text-white font-black text-center p-10 bg-transparent '>
-      Nepal's Premier Student Discounts Hub!      
-      </h1>
-      <p className='text-center pb-8 p-2 font-sans text-white bg-transparent font-medium'>Study More, Spend Less - Empowering Nepali Students with Unmatched Deals!</p>
-      </div>
+       
       </div>      
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 justify-center">
         {offersData.map((offer, index) => (
           <div key={index} className="p-5 mx-5 md:mx-2">
-            <div className="w-full bg-gradient-to-r from-white to-violet-200 rounded-lg shadow-lg flex flex-col md:flex-cloumn items-center">
+            <div className="w-full bg-gradient-to-r from-white to-blue-50 rounded-lg shadow-lg flex flex-col md:flex-cloumn items-center">
               <div className="p-5">
-                <img
-                  className="object-cover w-20 h-20 md:w-24 md:h-24 rounded-full md:rounded-xl shadow-2xl"
+                <img loading='lazy'
+                  className="object-cover w-20 h-20 md:w-24 md:h-24 rounded-full md:rounded-xl shadow-lg"
                   src={offer.imgUrl}
                   alt={offer.name}
                 />
