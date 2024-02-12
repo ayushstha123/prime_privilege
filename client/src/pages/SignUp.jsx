@@ -45,9 +45,7 @@ export default function SignUp() {
   }, [collegeId]);
 
   const validateForm = () => {
-    const { username, email, password, phoneNum, level, collegeId } = formData;
-console.log(formData)
-    // Check if username is present
+    const { username, email, password, phoneNum, address, level, collegeId } = formData;
     if (!username || username.trim() === '') {
       setError('Username is required.');
       return false;
@@ -55,12 +53,11 @@ console.log(formData)
 
     // Check if email is valid
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email || !emailRegex.test(email)) {
+    if(!email || !emailRegex.test(email)) {
       toast.error('Please enter a valid email address.');
       return false;
     }
 
-    // Check if phone number is present
     if (!phoneNum || phoneNum.trim() === '') {
       toast.error('Phone Number is required.');
       return false;
@@ -69,6 +66,10 @@ console.log(formData)
     // Check if level is selected
     if (!level) {
       toast.error('Please select your education level.');
+      return false;
+    }
+    if (!address) {
+      toast.error('Please enter your address!');
       return false;
     }
 
@@ -96,7 +97,6 @@ console.log(formData)
       setFormData((prevData) => ({ ...prevData, [fieldName]: e.target.value }));
     }
   
-    console.log(formData); // Log the formData to check if 'otp' is being updated
   };
   
 
@@ -113,12 +113,13 @@ console.log(formData)
   
       const collegeElement = document.getElementById('college');
       const collegeValue = collegeElement ? collegeElement.value : '';
+  
+      // Lowercase the address field before submitting
       const formDataWithCollege = {
         ...formData,
         collegeID: collegeValue,
+        address: formData.address.toLowerCase(), // Lowercase the address
       };
-      console.log(formDataWithCollege);
-
   
       const res = await fetch('api/auth/signup', {
         method: 'POST',
@@ -133,10 +134,11 @@ console.log(formData)
   
       if (!data.success) {
         toast.error(`Sign-up failed: ${data.message || 'Unknown error'}`);
-        console.log(res)
+        console.log(res);
         setError(true);
         return;
       }
+      toast.success("User Registered Successfully");
       navigate('/sign-in');
     } catch (error) {
       setLoading(false);
@@ -144,33 +146,33 @@ console.log(formData)
       setError(true);
     }
   };
-    
-
   const handleVerifyEmail = async () => {
-    try {
-       // Send a request to the backend to trigger OTP sending
-       const res = await fetch('/api/auth/sendotp', {
-          method: 'POST',
-          headers: {
-             'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email: formData.email }),
-       });
- 
-       const data = await res.json();
- 
-       if (data.success) {
-          toast.success('OTP sent successfully');
-       } else {
-          toast.error('Failed to send OTP: ' + data.message);
-       }
-       console.log(data);  // Move the console.log inside the try block
+    try {    
+      setLoading(true);
+
+      const res = await fetch('/api/auth/sendotp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: formData.email }),
+      });
+  
+      const data = await res.json();
+  
+      if (data.success) {
+        toast.success('OTP sent successfully');
+      } else {
+        toast.error('Failed to send OTP');
+      }
     } catch (error) {
-       console.error('Error sending OTP:', error);
-       toast.error('Error sending OTP');
+      console.error('Error sending OTP:', error);
+      toast.error('Error sending OTP');
+    } finally {
+      setLoading(false); 
     }
- };
- 
+  };
+  
 
   return (
     <div className='p-3 max-w-lg mx-auto'>
@@ -191,10 +193,11 @@ console.log(formData)
           onChange={handleChange}
         />
         <button
-  onClick={handleVerifyEmail} // Add this click event handler
+        type='button'
+  onClick={handleVerifyEmail}
   className='bg-blue-500 text-white p-3 rounded-lg uppercase hover:opacity-95'
 >
-  Verify Email
+{loading ? 'Loading...' : 'Verify Email'}
 </button>
 <input
           type='text'
@@ -215,6 +218,7 @@ console.log(formData)
           className='bg-slate-100 p-3 rounded-lg'
           onChange={(e) => setFormData((prevData) => ({ ...prevData, level: e.target.value }))}
         >
+          <option default>Select Education Level</option>
           <option value='+2'>+2</option>
           <option value='bachelor'>Bachelor</option>
           <option value='masters'>Masters</option>
@@ -242,6 +246,13 @@ console.log(formData)
           )}
         </p>
         <input
+          type='text'
+          placeholder='Address'
+          id='address'
+          className='bg-slate-100 p-3 rounded-lg'
+          onChange={handleChange}
+        />
+        <input
           type='password'
           placeholder='Password (at least 10 characters)'
           id='password'
@@ -249,7 +260,7 @@ console.log(formData)
           onChange={handleChange}
         />
         <button
-          disabled={loading}
+        disabled={loading}
           className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
         >
           {loading ? 'Loading...' : 'Sign Up'}

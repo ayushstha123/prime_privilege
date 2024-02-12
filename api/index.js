@@ -15,6 +15,7 @@ mongoose.connect(process.env.MONGO, { useNewUrlParser: true, useUnifiedTopology:
   .catch((err) => {
     console.log(err);
   });
+  const PORT=process.env.PORT;
 
 const __dirname = path.resolve();
 
@@ -29,8 +30,8 @@ app.get('*', (req, res) => {
 app.use(express.json());
 app.use(cookieParser());
 
-app.listen(3000, () => {
-  console.log('Server listening on port 3000');
+app.listen(PORT, () => {
+  console.log(`Server listening on port: ${PORT}`);
 });
 
 app.use('/api/user', userRoutes);
