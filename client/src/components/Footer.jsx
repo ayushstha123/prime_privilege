@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer class="flex flex-col space-y-10 justify-center  bg-purple-900 p-8">
+    <footer class="flex flex-col space-y-10 justify-center p-8" style={{backgroundColor:'#263675'}}>
     <nav class="flex justify-center flex-wrap gap-6 text-white font-medium">
         <a class="hover:text-purple-200" href="/home">Home</a>
         <a class="hover:text-purple-200" href="/about">About</a>
