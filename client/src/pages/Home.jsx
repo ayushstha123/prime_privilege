@@ -34,8 +34,8 @@ export default function Home() {
 
   return (
     <div className=''>
-      <div className="relative w-full h-screen">
-        <div className="carousel-container aspect-w-16 aspect-h-9 object-scale-down overflow-hidden w-full h-full">  
+      <div className="relative w-full h-60 sm:h-screen">
+        <div className="carousel-container aspect-w-16 aspect-h-9 object-scale-down overflow-hidden w-full h-60 sm:h-full">  
        
           <div
             className="carousel-content flex transition-transform duration-300 ease-in-out transform"
@@ -58,7 +58,7 @@ export default function Home() {
       </h1>
       <p className='text-center pb-8 p-2 font-sans text-white bg-transparent font-medium'>Study More, Spend Less - Empowering Nepali Students with Unmatched Deals!</p>
       </div>
-        <div className="absolute p-5 top-1/2 left-0 transform -translate-y-1/2 w-full">
+        <div className="absolute p-0 sm:p-5 top-1/2 left-0 transform -translate-y-1/2 w-full">
         <button className="carousel-arrow hover:bg-white hover:rounded-full p-2 transition-all animate-bounce carousel-prev float-left " onClick={handlePrev}>
   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="12" r="10" />

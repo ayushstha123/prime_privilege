@@ -6,8 +6,8 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:8080',
-        secure: false,
+        target: 'https://primeprivilege.com:3000',
+        secure: true,
       },
     },
   },

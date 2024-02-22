@@ -156,8 +156,7 @@ export default function SignUp() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email: formData.email }),
-      });
-  
+      });  
       const data = await res.json();
   
       if (data.success) {

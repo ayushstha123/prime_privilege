@@ -1,14 +1,15 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
     <footer class="flex flex-col space-y-10 justify-center p-8" style={{backgroundColor:'#263675'}}>
     <nav class="flex justify-center flex-wrap gap-6 text-white font-medium">
-        <a class="hover:text-purple-200" href="/home">Home</a>
-        <a class="hover:text-purple-200" href="/about">About</a>
-        <a class="hover:text-purple-200" href="/about">Services</a>
-        <a class="hover:text-purple-200" href="/sign-up">Register</a>
-        <a class="hover:text-purple-200" href="/sign-in">Sign-in</a>
+        <Link class="hover:text-purple-200" to="/home">Home</Link>
+        <Link class="hover:text-purple-200" to="/about">About</Link>
+        <Link class="hover:text-purple-200" to="/about">Services</Link>
+        <Link class="hover:text-purple-200" to="/sign-up">Register</Link>
+        <Link class="hover:text-purple-200" to="/sign-in">Sign-in</Link>
     </nav>
 
     <div class="flex justify-center space-x-5">

@@ -14,3 +14,18 @@
     justify-content: center;
     backdrop-filter: blur(1px);
 }
+@media screen and (max-width: 640px) {
+    
+    .overlay{
+        height: 240px;
+    }
+    .overlay>h1{
+        font-size: 16px;
+        padding-bottom: 0;
+    }
+
+    .overlay>p{
+        font-size: 10px;
+    }
+
+}
