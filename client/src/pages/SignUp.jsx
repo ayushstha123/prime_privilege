@@ -125,6 +125,7 @@ export default function SignUp() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+        'Accept': 'application/json',
         },
         body: JSON.stringify(formDataWithCollege),
       });
@@ -154,6 +155,7 @@ export default function SignUp() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+        'Accept': 'application/json',
         },
         body: JSON.stringify({ email: formData.email }),
       });  
