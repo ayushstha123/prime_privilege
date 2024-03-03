@@ -17,7 +17,7 @@ export default function App() {
       <ToastContainer />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/primeprivilege.com/about' element={<About />} />
+        <Route path='/about' element={<About />} />
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/teams' element={<OurTeam />} />
 
