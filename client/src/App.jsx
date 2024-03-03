@@ -8,6 +8,7 @@ import Header from './components/Header';
 import PrivateRoute from './components/PrivateRoute';
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import OurTeam from './pages/OurTeam';
 
 export default function App() {
   return (
@@ -16,8 +17,10 @@ export default function App() {
       <ToastContainer />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
+        <Route path='/primeprivilege.com/about' element={<About />} />
         <Route path='/sign-in' element={<SignIn />} />
+        <Route path='/teams' element={<OurTeam />} />
+
         <Route path='/sign-up' element={<SignUp />} />
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />
