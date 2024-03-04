@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.overlay{
+    display: flex;
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0));
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    backdrop-filter: blur(1px);
+}
+@media screen and (max-width: 640px) {
+    
+    .overlay{
+        height: 240px;
+    }
+    .overlay>h1{
+        font-size: 16px;
+        padding-bottom: 0;
+    }
+
+    .overlay>p{
+        font-size: 10px;
+    }
+
+}
