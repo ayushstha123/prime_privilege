@@ -68,7 +68,7 @@ export const signin = async (req, res, next) => {
     if (!validUser) return next(errorHandler(404, 'User not found'));
     const validPassword = bcryptjs.compareSync(password, validUser.password);
     if (!validPassword) return next(errorHandler(401, 'wrong credentials'));
-    const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id: validUser._id,role:validUser.role }, process.env.JWT_SECRET);
     const { password: hashedPassword, ...rest } = validUser._doc;
     const expiryDate = new Date(Date.now() + 3600000); // 1 hour
     res
