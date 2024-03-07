@@ -56,12 +56,12 @@ export default function Header() {
               Profile
             </Link>
             <Link
-              to='/profile'
+              to='/create-post'
               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
               role="menuitem"
               onClick={toggleMenu}
             >
-              Profile
+              Create a cupon
             </Link>
             <Link
               to='/profile'
@@ -75,12 +75,12 @@ export default function Header() {
         </div>
       )}
     </div>):
-    currentUser? (
+    currentUser ? (
       <Link to='/profile'>
               <img src={currentUser.profilePicture} alt='profile' className='h-7 w-7 rounded-full object-cover' />
       </Link>
     ) : (
-        <li>Sign In</li> 
+        <Link to={'/sign-in'}>Sign In</Link> 
     )
     }
         </ul>
