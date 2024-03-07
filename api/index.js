@@ -1,11 +1,11 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import userRoutes from './routes/user.route.js';
-import authRoutes from './routes/auth.route.js';
-import adminRoutes from './routes/admin.route.js';
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
+const express = require('express');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const userRoutes = require('./routes/user.route.js');
+const authRoutes = require('./routes/auth.route.js');
+const adminRoutes = require('./routes/admin.route.js');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 dotenv.config();
 

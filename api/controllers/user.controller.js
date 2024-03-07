@@ -1,8 +1,8 @@
-import User from '../models/user.model.js';
-import { errorHandler } from '../utils/error.js';
-import bcryptjs from 'bcryptjs';
+const User = require("../models/user.model.js");
+const errorHandler = require("../utils/error.js");
+const bcryptjs = require('bcryptjs');
 
-export const test = (req, res) => {
+ exports.test = (req, res) => {
   res.json({
     message: 'API is working!',
   });
@@ -10,7 +10,7 @@ export const test = (req, res) => {
 
 // update user
 
-export const updateUser = async (req, res, next) => {
+exports.updateUser = async (req, res, next) => {
   if (req.user.id !== req.params.id) {
     return next(errorHandler(401, 'You can update only your account!'));
   }
@@ -44,7 +44,7 @@ export const updateUser = async (req, res, next) => {
 // delete user
 
 
-export const deleteUser = async (req, res, next) => {
+exports.deleteUser = async (req, res, next) => {
   if (req.user.id !== req.params.id) {
     return next(errorHandler(401, 'You can delete only your account!'));
   }

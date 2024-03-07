@@ -1,10 +1,11 @@
-import User from '../models/user.model.js';
-import bcryptjs from 'bcryptjs';
-import { errorHandler } from '../utils/error.js';
-import jwt from 'jsonwebtoken';
-import OTP from '../models/otp.model.js';
+const User = require("../models/user.model.js");
+const bcryptjs = require('bcryptjs');
+const { errorHandler } = require('../utils/error.js');
+const jwt = require('jsonwebtoken');
+const OTP = require('../models/otp.model.js');
 
-export const signup = async (req, res, next) => {
+
+exports.signup = async (req, res, next) => {
   try {
     const { username, email, password, college, address, level, phoneNum, collegeId, otp } = req.body;
 
@@ -61,7 +62,7 @@ export const signup = async (req, res, next) => {
   }
 };
  
-export const signin = async (req, res, next) => {
+exports.signin = async (req, res, next) => {
   const { email, password } = req.body;
   try {
     const validUser = await User.findOne({ email });
@@ -82,6 +83,6 @@ export const signin = async (req, res, next) => {
 
 
 
-export const signout = (req, res) => {
+exports.signout = (req, res) => {
   res.clearCookie('access_token').status(200).json('Signout success!');
 };

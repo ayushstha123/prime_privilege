@@ -1,6 +1,6 @@
-import nodemailer from 'nodemailer';
 
- const mailSender = async (email, title, body) => {
+const nodemailer = require("nodemailer");
+const mailSender = async (email, title, body) => {
   try {
     let transporter = nodemailer.createTransport({
       host:'smtp.gmail.com',
@@ -22,4 +22,5 @@ import nodemailer from 'nodemailer';
     console.log(error.message);
   }
 };
-export default mailSender;
+
+module.exports =  mailSender ;

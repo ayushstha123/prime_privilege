@@ -1,7 +1,7 @@
-import User from "../models/user.model.js";
-import { errorHandler } from "../utils/error.js";
+const User = require("../models/user.model.js");
+const errorHandler = require("../utils/error.js");
 
-export const getAllUsers = async (req, res, next) => {
+exports.getAllUsers = async (req, res, next) => {
     try {
         const users = await User.find().select("-password");
         if (!users || users.length === 0) {

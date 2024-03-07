@@ -1,13 +1,8 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {
-  signInStart,
-  signInSuccess,
-  signInFailure,
-} from '../redux/user/userSlice';
+import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import OAuth from '../components/OAuth';
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -15,6 +10,7 @@ export default function SignIn() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
@@ -27,7 +23,7 @@ export default function SignIn() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-        'Accept': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify(formData),
       });
@@ -40,11 +36,11 @@ export default function SignIn() {
       toast.success("Sign in successful");
       navigate('/');
     } catch (error) {
-      
       dispatch(signInFailure(error));
-      toast.error(error);
+      toast.error('Something went wrong!');
     }
   };
+
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl text-center font-semibold my-7'>Sign In</h1>
@@ -69,7 +65,6 @@ export default function SignIn() {
         >
           {loading ? 'Loading...' : 'Sign In'}
         </button>
-
       </form>
       <div className='flex gap-2 mt-5'>
         <p>Dont Have an account?</p>
@@ -78,8 +73,7 @@ export default function SignIn() {
         </Link>
       </div>
       <p className='text-red-700 mt-5'>
-        {error ? error.message || toast.error('Something went wrong!') : ''}
-        
+        {error ? error.message : ''}
       </p>
     </div>
   );

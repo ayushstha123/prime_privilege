@@ -1,7 +1,7 @@
-import OTP from '../models/otp.model.js';
-import User from '../models/user.model.js';
+const OTP = require('../models/otp.model.js');
+const User = require("../models/user.model.js");
 
-export const sendOTP = async (req, res) => {
+const sendOTP = async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -45,4 +45,8 @@ function generateOTP() {
   const max = 999999;
   const otp = Math.floor(Math.random() * (max - min + 1)) + min;
   return otp.toString();
+}
+
+module.exports = {
+  sendOTP
 }
