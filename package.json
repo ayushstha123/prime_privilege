@@ -1,7 +1,6 @@
 {
   "name": "prime_privilege",
   "version": "1.0.0",
-  "description": "",
   "type": "module",
   "main": "index.js",
   "scripts": {
@@ -15,12 +14,26 @@
   "dependencies": {
     "@azure/msal-react": "^2.0.8",
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "https": "^1.0.0",
     "jsonwebtoken": "^9.0.1",
     "mongoose": "^7.4.2",
     "nodemailer": "^6.9.7",
     "nodemon": "^3.0.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayushstha123/cupon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ayushstha123/cupon/issues"
+  },
+  "homepage": "https://github.com/ayushstha123/cupon#readme",
+  "description": ""
 }

@@ -162,9 +162,9 @@ export default function SignUp() {
       const data = await res.json();
   
       if (data.success) {
-        toast.success('OTP sent successfully');
+                toast.success('OTP sent successfully');
       } else {
-        toast.error('Failed to send OTP');
+                toast.error('Failed to send OTP');
       }
     } catch (error) {
       console.error('Error sending OTP:', error);
