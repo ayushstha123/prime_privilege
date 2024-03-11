@@ -5,11 +5,11 @@ export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
   return (
     <div className='z-10 sticky top-0 shadow-lg' style={{backgroundColor:'#263675'}}>
-      <div className='text-white font-sans font-thin  flex justify-between items-center max-w-6xl mx-auto p-3'>
+      <div className='text-white font-sans font-normal md:font-semibold text-sm md:text-base flex justify-between items-center max-w-6xl mx-auto p-2'>
         <Link to='/'>
-          <h1 className='font-bold'>Prime <span style={{color:'#F4BE40'}}>Privileges</span></h1>
+          <h1 className='font-bold text-base'>Prime <span style={{color:'#F4BE40'}}>Privileges</span></h1>
         </Link>
-        <ul className='flex gap-6'>
+        <ul className='flex gap-3 md:gap-6'>
           <Link to='/'>
             <li>Home</li>
           </Link>
