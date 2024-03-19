@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import OurTeam from './pages/OurTeam';
 import Test from './pages/Test';
 import Showuser from './pages/User';
+import NotFound from './pages/NotFound';
 
 export default function App() {
   return (
@@ -30,7 +31,8 @@ export default function App() {
           <Route path='/profile' element={<Profile />} />
 
         </Route>
-        
+        {}
+        <Route path='*' element={<NotFound />} />
       </Routes>
 
     </BrowserRouter>
