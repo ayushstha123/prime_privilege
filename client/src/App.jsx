@@ -10,6 +10,7 @@ import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import OurTeam from './pages/OurTeam';
 import Test from './pages/Test';
+import Showuser from './pages/User';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
 
         <Route path='/sign-up' element={<SignUp />} />
         <Route path='/test' element={<Test />} />
+        <Route path='/user' element={<Showuser />} />
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />
 

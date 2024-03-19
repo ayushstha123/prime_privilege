@@ -10,6 +10,15 @@ const bcryptjs = require('bcryptjs');
 
 // update user
 
+exports.getAllUsers = async (req, res, next) => {
+  try {
+    const users = await User.find({}, 'username'); // Fetch only the username field
+    res.status(200).json(users);
+  } catch (error) {
+    next(error);
+  }
+};
+
 exports.updateUser = async (req, res, next) => {
   if (req.user.id !== req.params.id) {
     return next(errorHandler(401, 'You can update only your account!'));
