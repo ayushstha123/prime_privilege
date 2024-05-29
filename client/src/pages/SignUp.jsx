@@ -121,7 +121,7 @@ export default function SignUp() {
         address: formData.address.toLowerCase(), // Lowercase the address
       };
   
-      const res = await fetch('api/auth/signup', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -151,7 +151,7 @@ export default function SignUp() {
     try {    
       setLoading(true);
 
-      const res = await fetch('/api/auth/sendotp', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/sendotp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
