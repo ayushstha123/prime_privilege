@@ -25,8 +25,8 @@ export default function App() {
         <Route path='/teams' element={<OurTeam />} />
 
         <Route path='/sign-up' element={<SignUp />} />
-        <Route path='/test' element={<Test />} />
-        <Route path='/user' element={<Showuser />} />
+        {/* <Route path='/test' element={<Test />} />
+        <Route path='/user' element={<Showuser />} /> */}
         <Route element={<PrivateRoute />}>
           <Route path='/profile' element={<Profile />} />
 
