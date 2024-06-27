@@ -1,3 +1,4 @@
+import Business from '../models/business.model.js';
 import User from '../models/user.model.js';
 import { errorHandler } from '../utils/error.js';
 import bcryptjs from 'bcryptjs';
@@ -133,25 +134,36 @@ export const resetPassword = async (req, res) => {
   const { id, token } = req.params;
   const { password } = req.body;
 
-    jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
-      if (err) {
-        return res.status(400).json({ error: "Invalid or expired token" });
-      }
+  jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+    if (err) {
+      return res.status(400).json({ error: "Invalid or expired token" });
+    }
 
-      try {
-        // Hash the new password
-        const hashedPassword = await bcryptjs.hash(password, 10);
+    try {
+      // Hash the new password
+      const hashedPassword = await bcryptjs.hash(password, 10);
 
-        // Update the user's password
+      // Check if the user exists in User collection
+      const user = await User.findById(id);
+      if (user) {
         await User.findByIdAndUpdate(id, { password: hashedPassword });
-
-        // Send success response
-        res.status(200).json({ success: true, message: 'Password reset successfully' });
-      } catch (error) {
-        res.status(500).json({ success: false, error: 'Something went wrong' });
+        return res.status(200).json({ success: true, message: 'Password reset successfully for user' });
       }
-    });
-  
+
+      // Check if the user exists in Business collection
+      const business = await Business.findById(id);
+      if (business) {
+        await Business.findByIdAndUpdate(id, { password: hashedPassword });
+        return res.status(200).json({ success: true, message: 'Password reset successfully for business' });
+      }
+
+      // If the id doesn't exist in either collection
+      res.status(404).json({ error: 'User or Business not found' });
+
+    } catch (error) {
+      res.status(500).json({ success: false, error: 'Something went wrong' });
+    }
+  });
 };
 
 

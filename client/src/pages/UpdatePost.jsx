@@ -121,10 +121,10 @@ const UpdatePost = () => {
         <input
           className="rounded-md bg-gray-100 border border-gray-300 p-2 mb-4 outline-none"
           spellCheck="false"
-          value={formData.title || ''}
-          placeholder="title"
+          value={formData.name || ''}
+          placeholder="name"
           type="text"
-          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
         />
         <div className='flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-2 mb-3'>
           <input onChange={(e) => setFile(e.target.files[0])} className='font-semibold bg-gray-300 rounded-md p-2' type='file' id='product_photo' accept='image/jpeg,image/png' />
@@ -154,10 +154,10 @@ const UpdatePost = () => {
         <input
           className="rounded-md overflow-x-hidden bg-gray-100 border border-gray-300 p-2 mb-4 "
           spellCheck="false"
-          value={formData.locationSrc || ''}
-          placeholder="location link"
+          value={formData.address || ''}
+          placeholder="(add embedded address link here) from google maps"
           type="text"
-          onChange={(e) => setFormData({ ...formData, locationSrc: e.target.value })}
+          onChange={(e) => setFormData({ ...formData, address: e.target.value })}
         />
 
 <h1>Social Media Handles</h1>
