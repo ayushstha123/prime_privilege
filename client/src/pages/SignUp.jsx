@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { app } from '../firebase';
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 
 export default function SignUp() {
   const [formData, setFormData] = useState({});
@@ -53,7 +53,7 @@ export default function SignUp() {
 
     // Check if email is valid
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if(!email || !emailRegex.test(email)) {
+    if (!email || !emailRegex.test(email)) {
       toast.error('Please enter a valid email address.');
       return false;
     }
@@ -90,49 +90,49 @@ export default function SignUp() {
 
   const handleChange = (e) => {
     const fieldName = e.target.id;
-  
+
     if (fieldName === 'collegeId') {
       setCollegeId(e.target.files[0]);
     } else {
       setFormData((prevData) => ({ ...prevData, [fieldName]: e.target.value }));
     }
-  
+
   };
-  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!validateForm()) {
       return;
     }
-  
+
     try {
       setLoading(true);
       setError(false);
-  
+
       const collegeElement = document.getElementById('college');
       const collegeValue = collegeElement ? collegeElement.value : '';
-  
+
       // Lowercase the address field before submitting
       const formDataWithCollege = {
         ...formData,
         collegeID: collegeValue,
         address: formData.address.toLowerCase(), // Lowercase the address
       };
-  
+
       const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-        'Accept': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify(formDataWithCollege),
       });
-  
+
       const data = await res.json();
       setLoading(false);
-  
+
       if (!data.success) {
         toast.error(`Sign-up failed: ${data.message || 'Unknown error'}`);
         console.log(res);
@@ -148,32 +148,32 @@ export default function SignUp() {
     }
   };
   const handleVerifyEmail = async () => {
-    try {    
+    try {
       setLoading(true);
 
       const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/sendotp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-        'Accept': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify({ email: formData.email }),
-      });  
+      });
       const data = await res.json();
-  
+
       if (data.success) {
-                toast.success('OTP sent successfully');
+        toast.success('OTP sent successfully');
       } else {
-                toast.error('Failed to send OTP');
+        toast.error('Failed to send OTP');
       }
     } catch (error) {
       console.error('Error sending OTP:', error);
       toast.error('Error sending OTP');
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
-  
+
 
   return (
     <div className='p-3 max-w-lg mx-auto'>
@@ -194,13 +194,13 @@ export default function SignUp() {
           onChange={handleChange}
         />
         <button
-        type='button'
-  onClick={handleVerifyEmail}
-  className='bg-blue-500 text-white p-3 rounded-lg uppercase hover:opacity-95 font-medium'
->
-{loading ? 'Loading...' : 'Verify Email'}
-</button>
-<input
+          type='button'
+          onClick={handleVerifyEmail}
+          className='bg-blue-500 text-white p-3 rounded-lg uppercase hover:opacity-95 font-medium'
+        >
+          {loading ? 'Loading...' : 'Verify Email'}
+        </button>
+        <input
           type='text'
           placeholder='OTP from your email'
           id='otp'
@@ -261,7 +261,7 @@ export default function SignUp() {
           onChange={handleChange}
         />
         <button
-        disabled={loading}
+          disabled={loading}
           className='bg-slate-700 text-white p-3 rounded-lg uppercase font-medium hover:opacity-95 disabled:opacity-10'
         >
           {loading ? 'Loading...' : 'Sign Up'}
