@@ -1,6 +1,8 @@
 import OTP from '../models/otp.model.js';
 import User from '../models/user.model.js';
-
+import crypto from 'crypto';
+import { errorHandler } from '../utils/error.js';
+import { resetMailSender } from '../utils/mailSender.js';
 export const sendOTP = async (req, res) => {
   try {
     const { email } = req.body;
@@ -39,10 +41,31 @@ export const sendOTP = async (req, res) => {
   }
 };
 
+export const forgotPasswordOtp = async (req, res,next) => {
+  try {
+    const { email } = req.body;
+
+    // Check if user is already present
+    const user= await User.findOne({ email });
+    if(!user){
+      return next(errorHandler(400, 'User not found'));
+    }
+
+    await resetMailSender(email, "Reset Password", user);
+
+    res.status(200).json({
+      success: true,
+      message: 'OTP sent successfully',
+
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, error: error.message });
+  }
+};
+
+
+
 // Function to generate a random 6-digit OTP
 function generateOTP() {
-  const min = 100000;
-  const max = 999999;
-  const otp = Math.floor(Math.random() * (max - min + 1)) + min;
-  return otp.toString();
+  return crypto.randomBytes(20).toString('hex').slice(0, 10);
 }

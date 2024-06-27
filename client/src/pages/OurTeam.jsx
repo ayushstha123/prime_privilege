@@ -3,15 +3,15 @@ import React from 'react'
 const OurTeam = () => {
     return (
         <div>
-            <section className="bg-white">
+            <section className="bg-white font-aileron">
                 <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
                     <div className="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
                         <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">Our Team</h2>
                     </div>
                     <div className="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
                         <div className="items-cente rounded-lg sm:flex shadow-lg transition hover:scale-105" style={{ backgroundColor: '#263675' }}>
-                            <div class="w-full md:w-2/3 h-auto">
-                                <img class="md:rounded-none rounded-full w-40 h-40 mx-auto mt-5 md:m-0 md:object-center object-cover md:w-full md:h-full" src="./src/assests/images/ayush.jpeg" alt="Bonnie Avatar" />
+                            <div className="w-full md:w-2/3 h-auto">
+                                <img className="md:rounded-none rounded-full w-40 h-40 mx-auto mt-5 md:m-0 md:object-center object-cover md:w-full md:h-full" src="./src/assests/images/ayush.jpeg" alt="Bonnie Avatar" />
                             </div>
 
                             <div className="p-5 md:text-start text-center">
@@ -49,8 +49,8 @@ const OurTeam = () => {
                         </div>
 
                         <div className="items-cente rounded-lg sm:flex shadow-lg transition hover:scale-105"  style={{backgroundColor:'#263675'}}>
-          <div class="w-full md:w-2/3 h-auto">
-                    <img class="md:rounded-none rounded-full w-40 h-40 mx-auto mt-5 md:m-0 md:object-center object-cover md:w-full md:h-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiSb0JMXP4lkdxiQF9-SfPHgfc8-T5wsrZ_Q&usqp=CAU" alt="photo"/>
+          <div className="w-full md:w-2/3 h-auto">
+                    <img className="md:rounded-none rounded-full w-40 h-40 mx-auto mt-5 md:m-0 md:object-center object-cover md:w-full md:h-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiSb0JMXP4lkdxiQF9-SfPHgfc8-T5wsrZ_Q&usqp=CAU" alt="photo"/>
                 </div>
             
               <div className="p-5 md:text-start text-center">
