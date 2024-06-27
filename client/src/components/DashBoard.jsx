@@ -48,7 +48,7 @@ const DashBoard = () => {
     const fetchPosts = async () => {
       try {
 
-        const res = await fetch('/api/post/getposts');
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/post/getposts`);
         if (!res.ok) {
           throw new Error('Failed to fetch posts');
         }

@@ -1,14 +1,19 @@
-import express from 'express';
-import {
-    test,
+const express = require('express');
+const {
+  test,
   updateUser,
   deleteUser,
   getUsers,
   updateRole,
   resetPassword,
-} from '../controllers/business.controller.js';
-import { verifyToken } from '../utils/verifyUser.js';
-import { createProduct, deleteProduct, getProducts, updateProduct } from '../controllers/product.controller.js';
+} = require('../controllers/business.controller.js');
+const { verifyToken } = require('../utils/verifyUser.js');
+const {
+  createProduct,
+  deleteProduct,
+  getProducts,
+  updateProduct,
+} = require('../controllers/product.controller.js');
 
 const router = express.Router();
 router.get('/', test);
@@ -22,4 +27,4 @@ router.get('/getusers',verifyToken,getUsers);
 router.put('/update-role/:id',verifyToken,updateRole);
 router.put('/reset_password/:id/:token', resetPassword);
 
-export default router;
+module.exports= router;

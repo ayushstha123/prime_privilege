@@ -1,7 +1,7 @@
-import Product from '../models/products.model.js';
-import { errorHandler } from '../utils/error.js';
+const Product = require('../models/products.model.js');
+const { errorHandler } = require('../utils/error.js');
 
-export const createProduct = async (req, res, next) => {
+exports.createProduct = async (req, res, next) => {
   const { businessId, name, price, description, discount } = req.body;
 
   // Basic validation
@@ -25,7 +25,7 @@ export const createProduct = async (req, res, next) => {
     next(error); // Pass the error to the error-handling middleware if any
   }
 }
-export const getProducts = async (req, res) => {
+exports.getProducts = async (req, res) => {
   const { id } = req.params; // Extract business ID from URL parameter
 
   try {
@@ -43,7 +43,7 @@ export const getProducts = async (req, res) => {
   }
 };
 
-  export const updateProduct = async (req, res, next) => {
+  exports.updateProduct = async (req, res, next) => {
     const { id } = req.params; // Extract the product ID from URL parameters
     const { name, price, description, discount } = req.body; // Extract updated fields from request body
   
@@ -73,7 +73,7 @@ export const getProducts = async (req, res) => {
   };
 
 
-export const deleteProduct = async (req, res, next) => {
+exports.deleteProduct = async (req, res, next) => {
     try {
         const { id } = req.params;
         const product = await Product.findById(id);

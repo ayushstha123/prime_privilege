@@ -37,7 +37,7 @@ function Search() {
 
     const fetchPosts = async (searchQuery) => {
         setLoading(true);
-        const res = await fetch(`/api/post/getApprovedPosts?${searchQuery}`);
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/post/getApprovedPosts?${searchQuery}`);
         if (!res.ok) {
             setLoading(false);
             return;

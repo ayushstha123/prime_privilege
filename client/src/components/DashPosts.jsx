@@ -15,7 +15,7 @@ const DashPost = () => {
             setLoading(true);
             setError(null);
             try {
-                const res = await fetch(`/api/post/getposts?userId=${currentUser._id}`);
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/post/getposts?userId=${currentUser._id}`);
 
                 if (!res.ok) {
                     throw new Error('Failed to fetch posts');
@@ -35,7 +35,7 @@ const DashPost = () => {
             setLoading(true);
             setError(null);
             try {
-                const res = await fetch(`/api/post/getposts`);
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/post/getposts`);
 
                 if (!res.ok) {
                     throw new Error('Failed to fetch posts');
@@ -60,7 +60,7 @@ const DashPost = () => {
 
     const handleDeletePost = async (postId) => {
         try {
-            const res = await fetch(`/api/post/deletepost/${postId}/${currentUser._id}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/post/deletepost/${postId}/${currentUser._id}`, {
                 method: 'DELETE',
             });
             if (!res.ok) {
@@ -76,7 +76,7 @@ const DashPost = () => {
 
     const handleStatusChange = async (postId, newStatus) => {
         try {
-            const res = await fetch(`/api/post/update-status/${postId}/${currentUser._id}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/post/update-status/${postId}/${currentUser._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

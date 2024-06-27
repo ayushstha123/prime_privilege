@@ -55,7 +55,7 @@ const PostPage = () => {
     }, [post]);
 
     const likePost = (postId) => {
-        fetch(`/api/post/likes/${postId}?userId=${currentUser._id}`, {
+        fetch(`${import.meta.env.VITE_API_URL}/post/likes/${postId}?userId=${currentUser._id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

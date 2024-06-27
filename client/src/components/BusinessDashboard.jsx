@@ -32,7 +32,7 @@ const DashBusiness = () => {
 
     const handleDeleteUser = async (userId) => {
         try {
-            const res = await fetch(`/api/business/delete/${userId}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/business/delete/${userId}`, {
                 method: 'DELETE',
             });
 
@@ -50,7 +50,7 @@ const DashBusiness = () => {
 
     const handleRoleChange = async (userId, newRole) => {
         try {
-            const res = await fetch(`/api/business/update-role/${userId}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/business/update-role/${userId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

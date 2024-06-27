@@ -62,7 +62,7 @@ const handleValidation=()=>{
         imageUrl: formData.profilePicture || currentUser.profilePicture
       };
 
-      const res = await fetch('/api/post/create', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/post/create`, {
         method: 'POST',
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify(postData)
@@ -155,7 +155,7 @@ const handleValidation=()=>{
     }
     try {
       dispatch(updateUserStart());
-      const res = await fetch(`/api/${rolecheck}/update/${currentUser._id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/${rolecheck}/update/${currentUser._id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -175,7 +175,7 @@ const handleValidation=()=>{
           ...formData,
           image: currentUser.profilePicture
         };
-        const res2 = await fetch(`/api/post/updatepost/${currentUser._id}/${currentUser._id}`, {
+        const res2 = await fetch(`${import.meta.env.VITE_API_URL}/post/updatepost/${currentUser._id}/${currentUser._id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -200,7 +200,7 @@ const handleValidation=()=>{
   const handleDeleteAccount = async () => {
     try {
       dispatch(deleteUserStart());
-      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/user/delete/${currentUser._id}`, {
         method: 'DELETE',
       });
       const data = await res.json();

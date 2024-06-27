@@ -1,8 +1,8 @@
-import DiscountUsage from '../models/discountUsage.model.js';
-import User from '../models/user.model.js';
-import { errorHandler } from '../utils/error.js';
+const DiscountUsage = require('../models/discountUsage.model.js');
+const User = require('../models/user.model.js');
+const { errorHandler } = require('../utils/error.js');
 
-export const addDiscountUsage = async (req, res, next) => {
+exports.addDiscountUsage = async (req, res, next) => {
   const { businessId, studentEmail, productName, discountAmount } = req.body;
 
   try {
@@ -47,7 +47,7 @@ export const addDiscountUsage = async (req, res, next) => {
     next(error);
   }
 };
-export const getUsage = async (req, res, next) => {
+exports.getUsage = async (req, res, next) => {
   const { businessId } = req.params;
 
   try {
@@ -77,7 +77,7 @@ export const getUsage = async (req, res, next) => {
     next(error);
   }
 };
-export const getAllDiscountUsages = async (req, res, next) => {
+exports.getAllDiscountUsages = async (req, res, next) => {
   const isSuperAdmin = req.user && req.user.role === 'superAdmin';
 
   try {
@@ -97,7 +97,7 @@ export const getAllDiscountUsages = async (req, res, next) => {
   }
 };
 
-export const userUsages = async (req, res, next) => {
+exports.userUsages = async (req, res, next) => {
   const { userId } = req.params;
 
   try {

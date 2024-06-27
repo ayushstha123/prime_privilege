@@ -49,7 +49,7 @@ const DashUsers = () => {
 
     const handleDeleteUser = async (userId) => {
         try {
-            const res = await fetch(`/api/user/delete/${userId}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/user/delete/${userId}`, {
                 method: 'DELETE',
             });
 
@@ -67,7 +67,7 @@ const DashUsers = () => {
 
     const handleRoleChange = async (userId, newRole) => {
         try {
-            const res = await fetch(`/api/user/update-role/${userId}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/user/update-role/${userId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

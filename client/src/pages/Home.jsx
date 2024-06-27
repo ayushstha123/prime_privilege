@@ -48,7 +48,7 @@ export default function Home() {
   }, [images.length]);
 
   const viewPost = (postId) => {
-    fetch(`/api/post/views/${postId}?userId=${currentUser._id}`, {
+    fetch(`${import.meta.env.VITE_API_URL}/post/views/${postId}?userId=${currentUser._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"

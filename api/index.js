@@ -1,14 +1,13 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import userRoutes from './routes/user.route.js';
-import businessRoutes from './routes/business.route.js'
-import authRoutes from './routes/auth.route.js';
-import postRoutes from './routes/post.route.js';
-import usuageRoutes from './routes/usuage.route.js';
-import cors from 'cors'; // Correct import statement
-
-import cookieParser from 'cookie-parser';
+const express = require('express');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const userRoutes = require('./routes/user.route.js');
+const businessRoutes = require('./routes/business.route.js');
+const authRoutes = require('./routes/auth.route.js');
+const postRoutes = require('./routes/post.route.js');
+const usuageRoutes = require('./routes/usuage.route.js');
+const cors = require('cors'); // Correct import statement
+const cookieParser = require('cookie-parser');
 dotenv.config();
 
 mongoose.connect(process.env.MONGO, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -21,8 +20,10 @@ mongoose.connect(process.env.MONGO, { useNewUrlParser: true, useUnifiedTopology:
 const PORT = process.env.PORT;
 
 const app = express();
-app.use(cors()); // Applying CORS middleware
 
+app.use(cors({
+  origin: "*"
+}));
 app.use(express.json());
 app.use(cookieParser());
 

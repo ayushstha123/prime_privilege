@@ -53,7 +53,7 @@ const DashUsage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/usuage/create-usage', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/usuage/create-usage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

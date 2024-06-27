@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose =require('mongoose');
 const { ObjectId } = mongoose.Schema.Types;
 
 const postSchema = new mongoose.Schema(
@@ -50,4 +50,4 @@ const postSchema = new mongoose.Schema(
     }, { timestamps: true }
 )
 const Post = mongoose.model('Post', postSchema);
-export default Post;
+module.exports= Post;

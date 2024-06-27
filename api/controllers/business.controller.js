@@ -1,15 +1,15 @@
-import Business from '../models/business.model.js';
-import { errorHandler } from '../utils/error.js';
-import bcryptjs from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+const Business = require('../models/business.model.js');
+const { errorHandler } = require('../utils/error.js');
+const bcryptjs = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
-export const test = (req, res) => {
+exports.test = (req, res) => {
     res.json({
       message: 'API is working!', 
     });
   };
 // update user
-export const updateUser = async (req, res, next) => {
+exports.updateUser = async (req, res, next) => {
     if (req.user.id !== req.params.id) {
         return next(errorHandler(401, 'You can update only your account!'));
     }
@@ -45,7 +45,7 @@ export const updateUser = async (req, res, next) => {
 
 
 // delete user
-export const deleteUser = async (req, res, next) => {
+exports.deleteUser = async (req, res, next) => {
     if (!req.user.role === 'admin' && req.user.id !== req.params.id) {
         return next(errorHandler(401, 'You can delete only your account!'));
     }
@@ -56,7 +56,7 @@ export const deleteUser = async (req, res, next) => {
         next(error);
     }
 }
-export const getUsers=async(req,res,next)=>{
+exports.getUsers=async(req,res,next)=>{
     try {
       const isAdmin = req.user && req.user.role === 'admin'; // Check if the user is an admin
       const isSuperAdmin = req.user && req.user.role === 'superAdmin'; // Check if the user is an admin
@@ -102,7 +102,7 @@ export const getUsers=async(req,res,next)=>{
       next(error);
     }
     }
-export const getBusinessUsers = async (req, res, next) => {
+exports.getBusinessUsers = async (req, res, next) => {
     try {
         const isAdmin = req.user && req.user.role === 'admin'; // Check if the user is an admin
         const isSuperAdmin = req.user && req.user.role === 'superAdmin'; // Check if the user is an admin
@@ -145,7 +145,7 @@ export const getBusinessUsers = async (req, res, next) => {
     }
 }
 
-export const updateRole = async (req, res, next) => {
+exports.updateRole = async (req, res, next) => {
     const isAdmin = req.user && req.user.role === 'admin'; // Check if the user is an admin
     const isSuperAdmin = req.user && req.user.role === 'superAdmin'; // Check if the user is an admin
 
@@ -175,7 +175,7 @@ export const updateRole = async (req, res, next) => {
     }
 };
 
-export const resetPassword = async (req, res) => {
+exports.resetPassword = async (req, res) => {
     const { id, token } = req.params;
     const { password } = req.body;
 

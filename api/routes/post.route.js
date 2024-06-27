@@ -1,6 +1,15 @@
-import express from "express";
-import { verifyToken } from '../utils/verifyUser.js';
-import { create, deletePosts, getApprovedPosts, getPosts, likes, updatePost, updateStatus, views } from "../controllers/post.controller.js";
+const express = require('express');
+const { verifyToken } = require('../utils/verifyUser.js');
+const {
+  create,
+  deletePosts,
+  getApprovedPosts,
+  getPosts,
+  likes,
+  updatePost,
+  updateStatus,
+  views,
+} = require('../controllers/post.controller.js');
 
 const router = express.Router();
 
@@ -14,4 +23,4 @@ router.put('/likes/:postId', verifyToken, likes);
 router.put('/views/:postId', verifyToken, views);
 
 
-export default router;
+module.exports= router;

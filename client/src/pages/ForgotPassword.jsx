@@ -20,7 +20,7 @@ const ForgotPassword = () => {
     }
     setLoading(true); // Set loading state to true while processing request
     try {
-      const res = await fetch('/api/auth/forgot-password', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/forgot-password`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

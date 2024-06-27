@@ -9,7 +9,7 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(`/api/business/get-product/${currentUser._id}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/business/get-product/${currentUser._id}`);
         const data = await response.json();
         setProducts(data);
       } catch (error) {
@@ -60,7 +60,7 @@ const Products = () => {
       return
     }
     try {
-      const response = await fetch('/api/business/create-product', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/business/create-product`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ const Products = () => {
   const updateProduct = async (productId) => {
     const productToUpdate = products.find(product => product._id === productId);
     try {
-      const response = await fetch(`/api/business/update-product/${productId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/business/update-product/${productId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ const Products = () => {
   const removeProduct = async (index) => {
     const productId = products[index]._id;
     try {
-      const response = await fetch(`/api/business/delete-product/${productId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/business/delete-product/${productId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

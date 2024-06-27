@@ -1,7 +1,7 @@
-import Post from "../models/post.model.js";
-import { errorHandler } from "../utils/error.js";
+const Post = require('../models/post.model.js');
+const { errorHandler } = require('../utils/error.js');
 
-export const create = async (req, res, next) => {
+exports.create = async (req, res, next) => {
     try {
         const isBusiness = req.user && req.user.role === 'business'; // Check if the user is an admin
 
@@ -30,7 +30,7 @@ export const create = async (req, res, next) => {
 
 
 //get posts whose status is posted
-export const getApprovedPosts = async (req, res, next) => {
+exports.getApprovedPosts = async (req, res, next) => {
     try {
         const startIndex = parseInt(req.query.startIndex || 0);
         const limit = parseInt(req.query.limit || 10);
@@ -72,7 +72,7 @@ export const getApprovedPosts = async (req, res, next) => {
     }
 };
 
-export const getPosts = async (req, res, next) => {
+exports.getPosts = async (req, res, next) => {
     try {
         const startIndex = parseInt(req.query.startIndex || 0);
         const limit = parseInt(req.query.limit || 10);
@@ -114,7 +114,7 @@ export const getPosts = async (req, res, next) => {
 };
 
 
-export const updateStatus = async (req, res, next) => {
+exports.updateStatus = async (req, res, next) => {
     try {
         const isAdmin = req.user && req.user.role === 'admin'; // Check if the user is a admin
         const isSuperAdmin = req.user && req.user.role === 'superAdmin'; // Check if the user is a superadmin
@@ -137,7 +137,7 @@ export const updateStatus = async (req, res, next) => {
     }
 };
 
-export const deletePosts = async (req, res, next) => {
+exports.deletePosts = async (req, res, next) => {
     try {
         const isAdmin = req.user && req.user.role === 'admin'; // Check if the user is a superadmin
         const isOwner = req.user && req.user.id === req.params.userId;
@@ -153,7 +153,7 @@ export const deletePosts = async (req, res, next) => {
 };
 
 
-export const updatePost = async (req, res, next) => {
+exports.updatePost = async (req, res, next) => {
     const isAdmin = req.user && req.user.role === 'admin';
     const isBusiness = req.user && req.user.role === 'business';
 
@@ -186,7 +186,7 @@ export const updatePost = async (req, res, next) => {
     }
 };
 
-export const likes = async (req, res) => {
+exports.likes = async (req, res) => {
     try {
         const postId = req.params.postId; // Assuming postId is sent in the request params
         const userId = req.query.userId;
@@ -216,7 +216,7 @@ export const likes = async (req, res) => {
     }
 };
 
-export const views = async (req, res) => {
+exports.views = async (req, res) => {
     try {
         const postId = req.params.postId; // Assuming postId is sent in the request params
         const userId = req.query.userId;

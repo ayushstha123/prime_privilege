@@ -1,13 +1,13 @@
-import express from 'express';
-import {
+const express = require('express');
+const {
   test,
   updateUser,
   deleteUser,
   getUsers,
   updateRole,
   resetPassword,
-} from '../controllers/user.controller.js';
-import { verifyToken } from '../utils/verifyUser.js';
+} = require('../controllers/user.controller.js');
+const { verifyToken } = require('../utils/verifyUser.js');
 
 const router = express.Router();
 
@@ -18,4 +18,4 @@ router.get('/getusers',verifyToken,getUsers);
 router.put('/update-role/:id',verifyToken,updateRole);
 router.put('/reset_password/:id/:token', resetPassword);
 
-export default router;
+module.exports= router;

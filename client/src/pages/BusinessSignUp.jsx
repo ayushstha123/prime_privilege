@@ -112,7 +112,7 @@ export default function BusinessSignUp() {
     try {
       setLoading(true);
       setError(false);
-      const res = await fetch('api/auth/business-signup', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/business-signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -143,7 +143,7 @@ export default function BusinessSignUp() {
     try {    
       setLoading(true);
 
-      const res = await fetch('/api/auth/sendotp', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/sendotp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
