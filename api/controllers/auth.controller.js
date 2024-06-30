@@ -1,10 +1,10 @@
-const User = require('../models/user.model.js');
-const bcryptjs = require('bcryptjs');
-const { errorHandler } = require('../utils/error.js');
-const jwt = require('jsonwebtoken');
-const OTP = require('../models/otp.model.js');
-const Business = require('../models/business.model.js');
-exports.signup = async (req, res, next) => {
+import User from '../models/user.model.js';
+import bcryptjs from 'bcryptjs';
+import { errorHandler } from '../utils/error.js';
+import jwt from 'jsonwebtoken';
+import OTP from '../models/otp.model.js';
+import Business from '../models/business.model.js';
+export const signup = async (req, res, next) => {
   try {
     const { username, email, password, role, address, phoneNum,name, otp } = req.body;
 
@@ -160,7 +160,7 @@ exports.business_signup = async (req, res, next) => {
 };
 
 // business signin
-exports.business_signin = async (req, res, next) => {
+export const business_signin = async (req, res, next) => {
   const { email, password } = req.body;
   try {
     const validUser = await Business.findOne({ email });

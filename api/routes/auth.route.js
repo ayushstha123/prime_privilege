@@ -1,14 +1,6 @@
-const express = require('express');
-const {
-  signin,
-  signup,
-  signout,
-  business_signup,
-  business_signin,
-  google,
-} = require('../controllers/auth.controller.js');
-const { forgotPasswordOtp, sendOTP } = require('../controllers/otp.controllers.js');
-
+import express from 'express';
+import { signin, signup, signout, business_signup, business_signin,google } from '../controllers/auth.controller.js';
+import { forgotPasswordOtp, sendOTP } from '../controllers/otp.controllers.js';
 const router = express.Router();
 router.post('/signup', signup);
 router.post('/signin', signin);

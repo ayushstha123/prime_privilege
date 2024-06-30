@@ -1,8 +1,8 @@
-const Business = require('../models/business.model.js');
-const User = require('../models/user.model.js');
-const { errorHandler } = require('../utils/error.js');
-const bcryptjs = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+import Business from '../models/business.model.js';
+import User from '../models/user.model.js';
+import { errorHandler } from '../utils/error.js';
+import bcryptjs from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 exports.test = (req, res) => {
   res.json({
@@ -11,7 +11,7 @@ exports.test = (req, res) => {
 };
 
 // update user
-exports.updateUser = async (req, res, next) => {
+export const updateUser = async (req, res, next) => {
   if (req.user.id !== req.params.id) {
     return next(errorHandler(401, 'You can update only your account!'));
   }
@@ -46,7 +46,7 @@ exports.updateUser = async (req, res, next) => {
 
 
 // delete user
-exports.deleteUser = async (req, res, next) => {
+export const deleteUser = async (req, res, next) => {
   if (!req.user.role === 'admin' && req.user.id !== req.params.id) {
     return next(errorHandler(401, 'You can delete only your account!'));
   }

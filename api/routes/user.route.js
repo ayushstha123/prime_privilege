@@ -7,8 +7,8 @@ const {
   getUsers,
   updateRole,
   resetPassword,
-} = require('../controllers/user.controller.js');
-const { verifyToken } = require('../utils/verifyUser.js');
+} from '../controllers/user.controller.js';
+import { verifyToken } from '../utils/verifyUser.js';
 
 const router = express.Router();
 
