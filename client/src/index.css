@@ -1,6 +1,9 @@
+@import url('https://fonts.cdnfonts.com/css/aileron');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 .overlay{
     display: flex;

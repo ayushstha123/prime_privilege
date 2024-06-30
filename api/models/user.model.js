@@ -1,11 +1,13 @@
-const mongoose = require('mongoose');
+const mongoose =require('mongoose');
 
 const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
       required: true,
-      unique: true,
+    },
+    name: {
+      type: String,
     },
     email:{
       type: String,
@@ -18,24 +20,21 @@ const userSchema = new mongoose.Schema(
     },
     college:{
       type:String,
-      required:true,
       default:"Prime College"
     },
     level:{
       type:String,
-      required:true,
-      default:'+2'
+      default:''
     },
     phoneNum: {
       type: String,
-      required: true,
     },
     address:{
       type:String,
-      required:true,
     },
-    collegeId: {
+    document: {
       type: String,
+      default:'',
     },
     profilePicture: {
       type: String,
@@ -44,13 +43,12 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['visitor', 'student', 'shopkeeper', 'admin'],
-      default: 'visitor', 
+      enum: ['idleStudent','student','admin'],
+      required:true,
     },
   },
   { timestamps: true }
 );
 
 const User = mongoose.model('User', userSchema);
-
-module.exports = User;
+module.exports= User;

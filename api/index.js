@@ -2,11 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const userRoutes = require('./routes/user.route.js');
+const businessRoutes = require('./routes/business.route.js');
 const authRoutes = require('./routes/auth.route.js');
-const adminRoutes = require('./routes/admin.route.js');
-const cors = require('cors');
+const postRoutes = require('./routes/post.route.js');
+const usuageRoutes = require('./routes/usuage.route.js');
+const cors = require('cors'); // Correct import statement
 const cookieParser = require('cookie-parser');
-
 dotenv.config();
 
 mongoose.connect(process.env.MONGO, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -16,15 +17,13 @@ mongoose.connect(process.env.MONGO, { useNewUrlParser: true, useUnifiedTopology:
   .catch((err) => {
     console.log(err);
   });
-  const PORT=process.env.PORT;
-
+const PORT = process.env.PORT;
 
 const app = express();
 
 app.use(cors({
   origin: "*"
 }));
-
 app.use(express.json());
 app.use(cookieParser());
 
@@ -35,8 +34,10 @@ app.listen(PORT, () => {
 });
 
 app.use('/api/user', userRoutes);
+app.use('/api/business', businessRoutes);
 app.use('/api/auth', authRoutes);
-app.use('/api/admin',adminRoutes);
+app.use('/api/post', postRoutes);
+app.use('/api/usuage', usuageRoutes);
 
 
 app.use((err, req, res, next) => {

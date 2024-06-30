@@ -5,4 +5,4 @@ const router = express.Router();
 
 router.post('/send-otp', otpController.sendOTP);
 
-module.exports = router;
+module.exports= router;
