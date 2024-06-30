@@ -1,33 +1,56 @@
-const OTP = require('../models/otp.model.js');
-const User = require("../models/user.model.js");
-
-const sendOTP = async (req, res) => {
+import OTP from '../models/otp.model.js';
+import User from '../models/user.model.js';
+import crypto from 'crypto';
+import { errorHandler } from '../utils/error.js';
+import { resetMailSender } from '../utils/mailSender.js';
+import Business from '../models/business.model.js';
+export const sendOTP = async (req, res) => {
   try {
     const { email } = req.body;
 
-    // Check if user is already present
-    const checkUserPresent = await User.findOne({ email });
+    // Check if the user is already registered in either User or Business collection
+    const checkUser = await User.findOne({ email }) || await Business.findOne({ email });
 
-    // If user found with provided email
-    if (checkUserPresent) {
+    if (checkUser) {
       return res.status(401).json({
         success: false,
         message: 'User is already registered',
       });
     }
 
-    let otp = generateOTP();
+    // Generate a unique OTP
+    let otp;
+    let otpExists = true;
 
-    // Ensure uniqueness in the database
-    let result = await OTP.findOne({ otp });
-    while (result) {
+    while (otpExists) {
       otp = generateOTP();
-      result = await OTP.findOne({ otp });
+      otpExists = await OTP.exists({ otp });
     }
 
     // Save the OTP in the database
     const otpPayload = { email, otp };
     await OTP.create(otpPayload);
+
+    res.status(200).json({
+      success: true,
+      message: 'OTP sent successfully',
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+export const forgotPasswordOtp = async (req, res,next) => {
+  try {
+    const { email } = req.body;
+
+    // Check if user is already present
+    const user= await User.findOne({ email }) || await Business.findOne({ email });
+    if(!user){
+      return next(errorHandler(400, 'User not found'));
+    }
+
+    await resetMailSender(email, "Reset Password", user);
 
     res.status(200).json({
       success: true,
@@ -39,14 +62,9 @@ const sendOTP = async (req, res) => {
   }
 };
 
+
+
 // Function to generate a random 6-digit OTP
 function generateOTP() {
-  const min = 100000;
-  const max = 999999;
-  const otp = Math.floor(Math.random() * (max - min + 1)) + min;
-  return otp.toString();
-}
-
-module.exports = {
-  sendOTP
+  return crypto.randomBytes(20).toString('hex').slice(0, 10);
 }

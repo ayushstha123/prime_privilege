@@ -3,7 +3,7 @@ import Footer from '../components/Footer';
 
 export default function About() {
     return (
-        <div>
+        <div className='font-aileron'>
             <section className=" py-10 lg:py-20 bg-white font-poppins ">
                 <div className="max-w-6xl py-4 mx-auto lg:py-6 md:px-6">
                     <div className="flex flex-wrap ">
