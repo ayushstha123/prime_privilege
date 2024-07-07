@@ -1,13 +1,8 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import {
-  signInStart,
-  signInSuccess,
-  signInFailure,
-} from '../redux/user/userSlice';
+import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import OAuth from '../components/OAuth';
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -15,6 +10,7 @@ export default function SignIn() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
@@ -67,11 +63,11 @@ export default function SignIn() {
       toast.success("Sign in successful");
       navigate('/');
     } catch (error) {
-      
       dispatch(signInFailure(error));
-      toast.error(error);
+      toast.error('Something went wrong!');
     }
   };
+
   return (
     <div className='font-aileron p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl text-center font-semibold my-7'>Student Sign In</h1>
@@ -117,8 +113,7 @@ export default function SignIn() {
           <span className='text-red-500 underline'>Forgot Password?</span>
         </Link>
       <p className='text-red-700 mt-5'>
-        {error ? error.message || toast.error('Something went wrong!') : ''}
-        
+        {error ? error.message : ''}
       </p>
     </div>
   );

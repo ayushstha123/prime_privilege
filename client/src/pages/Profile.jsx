@@ -155,10 +155,11 @@ const handleValidation=()=>{
     }
     try {
       dispatch(updateUserStart());
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/${rolecheck}/update/${currentUser._id}`, {
+      const res = await fetch(`/api/${rolecheck}/update/${currentUser._id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+        'Accept': 'application/json',
         },
         body: JSON.stringify(formData),
       });

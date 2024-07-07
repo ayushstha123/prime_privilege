@@ -26,7 +26,7 @@ export default function SignUp() {
 
     // Check if email is valid
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if(!email || !emailRegex.test(email)) {
+    if (!email || !emailRegex.test(email)) {
       toast.error('Please enter a valid email address.');
       return false;
     }
@@ -61,22 +61,23 @@ export default function SignUp() {
     
   
   };
-  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!validateForm()) {
       return;
     }
-  
+
     try {
       setLoading(true);
       setError(false);
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/signup`, {
+      const res = await fetch('api/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify(formData),
       });
@@ -84,7 +85,7 @@ export default function SignUp() {
   
       const data = await res.json();
       setLoading(false);
-  
+
       if (!data.success) {
         toast.error(`Sign-up failed: ${data.message || 'Unknown error'}`);
         console.log(res);
@@ -101,19 +102,19 @@ export default function SignUp() {
   };
 
   const handleVerifyEmail = async () => {
-    try {    
+    try {
       setLoading(true);
 
       const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/sendotp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify({ email: formData.email }),
       });
-  
       const data = await res.json();
-  
+
       if (data.success) {
         toast.success('OTP sent successfully');
       } else {
@@ -123,10 +124,10 @@ export default function SignUp() {
       console.error('Error sending OTP:', error);
       toast.error('Error sending OTP');
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
-  
+
 
   return (
     <div className='font-aileron p-3 max-w-lg mx-auto'>
@@ -154,13 +155,13 @@ export default function SignUp() {
           onChange={handleChange}
         />
         <button
-        type='button'
-  onClick={handleVerifyEmail}
-  className='bg-blue-500 text-white p-3 rounded-lg uppercase hover:opacity-95'
->
-{loading ? 'Loading...' : 'Verify Email'}
-</button>
-<input
+          type='button'
+          onClick={handleVerifyEmail}
+          className='bg-blue-500 text-white p-3 rounded-lg uppercase hover:opacity-95 font-medium'
+        >
+          {loading ? 'Loading...' : 'Verify Email'}
+        </button>
+        <input
           type='text'
           placeholder='OTP from your email'
           id='otp'
@@ -197,8 +198,8 @@ export default function SignUp() {
           onChange={handleChange}
         />
         <button
-        disabled={loading}
-          className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80'
+          disabled={loading}
+          className='bg-slate-700 text-white p-3 rounded-lg uppercase font-medium hover:opacity-95 disabled:opacity-10'
         >
           {loading ? 'Loading...' : 'Sign Up'}
         </button>

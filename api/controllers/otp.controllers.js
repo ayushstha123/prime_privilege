@@ -1,11 +1,10 @@
-const OTP = require('../models/otp.model.js');
-const User = require('../models/user.model.js');
-const crypto = require('crypto');
-const { errorHandler } = require('../utils/error.js');
-const { resetMailSender } = require('../utils/mailSender.js');
-const Business = require('../models/business.model.js');
-
-exports.sendOTP = async (req, res) => {
+import OTP from '../models/otp.model.js';
+import User from '../models/user.model.js';
+import crypto from 'crypto';
+import { errorHandler } from '../utils/error.js';
+import { resetMailSender } from '../utils/mailSender.js';
+import Business from '../models/business.model.js';
+export const sendOTP = async (req, res) => {
   try {
     const { email } = req.body;
 

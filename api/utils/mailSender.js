@@ -1,5 +1,5 @@
-const nodemailer = require('nodemailer');
-const jwt = require('jsonwebtoken');
+import nodemailer from 'nodemailer';
+import jwt from 'jsonwebtoken'; // Make sure to import jwt if you haven't already
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
@@ -9,7 +9,7 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-exports.mailSender = async (email, title, body) => {
+export const mailSender = async (email, title, body) => {
   try {
     const info = await transporter.sendMail({
       from: 'www.primepriviledge.com',

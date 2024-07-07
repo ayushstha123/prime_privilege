@@ -50,6 +50,7 @@ export default function App() {
         <Route element={<PrivateRoute />}>
           <Route path='/identity-card' element={<IdentityCard />} />
           <Route path='/profile' element={<Profile />} />
+
         </Route>
         
   <Route element={<OnlyBusinessRoute />}>
